@@ -30,6 +30,7 @@ if response:
                         file.write(line)
                     file.truncate()
                     file.close()
+    messagebox.showinfo(title="Success", message="Successfully patched tracks folder.")
 
     #patch cars
     cars_path = filedialog.askdirectory(title="Select your FM4 Media/RenderScenarios folder")
@@ -41,13 +42,13 @@ if response:
                     lines = file.readlines()
                     file.seek(0)
                     for i, line in enumerate(lines):
-                        if i == len(lines)-2:
-                            file.write('  <SkipshadowMapUnlessCockpit value="1"/>\n')
+                        if i == len(lines)-1:
+                            file.write('  <SkipShadowMapUnlessCockpit value="1"/>\n')
                             if not line.endswith('\n'):
                                 file.write('\n')
                         file.write(line)
                     file.truncate()
                     file.close()
-    else:
+        messagebox.showinfo(title="Success", message="Successfully patched RenderScenarios folder.")
         os._exit(0)
 gc.collect()
