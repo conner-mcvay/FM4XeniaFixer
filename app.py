@@ -50,5 +50,6 @@ if response:
                     file.truncate()
                     file.close()
         messagebox.showinfo(title="Success", message="Successfully patched RenderScenarios folder.")
-    os._exit(0)
+
 gc.collect()
+os._exit(0)
