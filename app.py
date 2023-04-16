@@ -49,5 +49,5 @@ if response:
                     file.truncate()
                     file.close()
     else:
-        exit(0)
+        os._exit(0)
 gc.collect()
