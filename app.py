@@ -15,7 +15,16 @@ response = messagebox.askokcancel(title=title, message=message)
 root.destroy()
 
 if response:
-    tracks_path = filedialog.askdirectory(title="Select your FM4 Media/tracks folder")
+    tracks_path = ""
+    while "tracks" not in tracks_path.lower():
+        tracks_path = filedialog.askdirectory(title="Select your FM4 Media/tracks folder")
+        if not tracks_path:
+            # User clicked cancel or closed the dialog
+            exit(0)
+        if "tracks" not in tracks_path.lower():
+            messagebox.showerror(title="Error",
+                                 message="Not a valid tracks folder.")
+
     #patch tracks
     for root, dirs, files in os.walk(tracks_path):
         for filename in files:
@@ -33,7 +42,16 @@ if response:
     messagebox.showinfo(title="Success", message="Successfully patched tracks folder.")
 
     #patch cars
-    cars_path = filedialog.askdirectory(title="Select your FM4 Media/RenderScenarios folder")
+    cars_path = ""
+    while "renderscenarios" not in cars_path.lower():
+        cars_path = filedialog.askdirectory(title="Select your FM4 Media/RenderScenarios folder")
+        if not cars_path:
+            # User clicked cancel or closed the dialog
+            exit(0)
+        if "renderscenarios" not in cars_path.lower():
+            messagebox.showerror(title="Error",
+                                 message="Not a valid RenderScenarios folder.")
+
     for root, dirs, files in os.walk(cars_path):
         for filename in files:
             if "car" in filename.lower() and filename.endswith(".xml"):
